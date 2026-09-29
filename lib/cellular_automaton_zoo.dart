@@ -8,3 +8,4 @@ export 'src/cellular_automaton.dart';
 export 'src/grid.dart';
 export 'src/rendering.dart';
 export 'src/rules.dart';
+
