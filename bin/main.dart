@@ -10,15 +10,21 @@ class Conway extends CellularAutomaton
   Conway({required super.width, required super.height, required super.seed});
 }
 
+class Custom extends CellularAutomaton
+    with CustomRules, AsciiRenderable, DecoratedRenderable {
+  Custom({required super.width, required super.height, required super.seed});
+}
+
 CellularAutomaton _buildSpecies(String name, int w, int h, int seed) =>
     switch (name) {
       'conway' => Conway(width: w, height: h, seed: seed),
+      'custom' => Custom(width: w, height: h, seed: seed),
       _ => throw ArgumentError('Unknown species: $name'),
     };
 
 Future<void> main(List<String> arguments) async {
   final parser = ArgParser()
-    ..addOption('species', defaultsTo: 'conway', allowed: ['conway'])
+    ..addOption('species', defaultsTo: 'conway', allowed: ['conway', 'custom'])
     ..addOption('seed', defaultsTo: '42')
     ..addOption('width', defaultsTo: '40')
     ..addOption('height', defaultsTo: '20')
